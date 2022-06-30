@@ -1,0 +1,9 @@
+- Cài đặt XAMPP
+
+- Cài đặt sequelize-cli:
+npm install --save-dev sequelize-cli@6.2.0
+
+- Vào thư mục src:
+cd src
+- sau khi vào src, gõ lệnh: npx sequelize-cli init
+
