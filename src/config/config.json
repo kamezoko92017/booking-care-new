@@ -2,9 +2,10 @@
   "development": {
     "username": "root",
     "password": null,
-    "database": "video",
+    "database": "booking_care",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "loggin": false
   },
   "test": {
     "username": "root",

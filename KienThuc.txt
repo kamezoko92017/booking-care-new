@@ -7,3 +7,66 @@ npm install --save-dev sequelize-cli@6.2.0
 cd src
 - sau khi vào src, gõ lệnh: npx sequelize-cli init
 
+-----------------------------------------------------------------
+
+Sequelize là một package hỗ trợ sử dụng ORM với môi trường Node.JS . 
+Trong video này, chúng ta sẽ cùng nhau tìm hiểu cách tạo tables (migration), 
+thêm dữ liệu (seeder) bằng Sequelize-CLI vào cơ sở dữ liệu MySQL.
+
+🐱‍🏍Các câu lệnh mình sử dụng trong video:
+👉 1. Cài đặt các thư viện: sequlize-cli, sequelize và mysql2
+npm install --save-dev sequelize-cli
+npm install --save mysql2
+npm install --save sequelize
+
+👉 2. Thêm file .sequelizerc tại thư mục root
+Nội dung file .sequelizerc
+const path = require('path');
+module.exports = {
+  'config': path.resolve('./src/config', 'config.json'),
+  'migrations-path': path.resolve('./src', 'migrations'),
+  'models-path': path.resolve('./src', 'models'),
+  'seeders-path': path.resolve('./src', 'seeders')
+}
+
+👉 Tại thư mục root, sử dụng câu lệnh: node_modules/.bin/sequelize init
+
+👉 3. Tạo model: 
+Để tạo các table: users
+- Vào thư mục models/ tạo các file user.js
+hoặc tạo bằng lệnh sequelize:
+npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string,email:string
+- Vào thư mục migrations/ tạo file migration-create-user.js 
+
+👉 4: chạy lệnh sau để sequelize tương tác với XAMPP tạo các bảng csdl:
+npx sequelize-cli db:migrate
+
+👉5. Tạo dữ liệu để test
+- Cách 1: vào XAMPP insert
+- Tạo bằng lệnh sequelize
+
+Tạo Seeder: npx sequelize-cli seed:generate --name demo-user
+
+🐱‍🚀 Tài liệu tham khảo sử dụng trong video:
+https://sequelize.org/docs/v6/other-topics/migrations/#installing-the-cli
+https://mherman.org/blog/node-postgres-sequelize/
+
+****Video #25 CRUD với Node.js và Sequelize - Sử Dụng ORM Để Tạo Dữ Liệu Mới Vào Database (Create) - Phần 1***
+
+Trong video này, chúng ta sẽ cùng nhau tạo tìm hiểu về cách thêm, sửa, xóa dữ liệu với Node.JS và Sequelize. Việc chúng ta sử dụng Sequelize, là để hỗ trợ cách dùng ORM với Node.js.
+
+ORM là viết tắt của Object Relational Mapping, nó là tượng trưng cho cách chúng ta thao tác với dữ liệu dưới database mà không cần viết câu truy vấn thông thường. Việc làm này sẽ giúp code của chúng ta ngắn hơn, gọn hơn cũng như tiết kiệm thời gian của việc xây dựng project.
+
+Ví dụ về ORM: Để tạo 1 người dùng vào bảng Users, thông thường, với câu lệnh SQL, chúng ta sẽ cần phải viết là :
+INSERT INTO table_name (column1, column2, column3, ...)
+VALUES (value1, value2, value3, ...);
+
+Còn với ORM, chúng ta sẽ viết là: User.create() . Nó đơn giản và ngắn gọn hơn rất nhiều.
+
+👀Tài liệu kham khảo sử dụng trong video này:
+👉 Lấy Link Bootstrap 4 CDN online tại đây: https://www.w3schools.com/bootstrap4/...
+👉 Tạo nhanh 1 form với Form Bootstrap 4: https://getbootstrap.com/docs/4.0/com...
+👉 Hash User's password với thư viện Bcryptjs: https://www.npmjs.com/package/bcryptjs
+
+- Sử dụng thư viện bcryptjs để hash password
+
