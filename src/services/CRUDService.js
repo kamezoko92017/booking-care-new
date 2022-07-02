@@ -1,5 +1,6 @@
 import db from "../models/index"
 import bcrypt from 'bcryptjs';
+import res from "express/lib/response";
 const salt = bcrypt.genSaltSync(10);
 
 let createNewUser = async (data) => {
@@ -54,7 +55,54 @@ let getAllUser = () => {
     })
 }
 
+let getUserInfoById = (userId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let user = db.users.findOne({
+                where: { id: userId },
+                raw: true,
+            })
+            if (user) {
+                resolve(user)
+            }
+            else {
+                resolve([])
+            }
+
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+let updateUserData = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let user = await db.users.findOne({
+                where: { id: data.id }
+            })
+            if (user) {
+                user.firstName = data.firstName;
+                user.lastName = data.lastName;
+                user.address = data.address;
+                await user.save()
+                let allUser = await db.users.findAll()
+                resolve(allUser)
+            }
+            else {
+                resolve()
+            }
+        }
+        catch (e) {
+            console.log(e)
+        }
+    })
+}
+
 module.exports = {
     createNewUser: createNewUser,
     getAllUser: getAllUser,
+    getUserInfoById: getUserInfoById,
+    updateUserData: updateUserData,
 }

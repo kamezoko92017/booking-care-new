@@ -45,6 +45,31 @@ let readCRUD = async (req, res) => {
     })
 }
 
+let editCRUD = async (req, res) => {
+    let userId = req.query.id
+    if (userId) {
+        let userData = await CRUDService.getUserInfoById(userId)
+        return res.render('edit-crud.ejs', {
+            user: userData
+        })
+    } else {
+        return res.send('User not found !')
+    }
+
+}
+
+let putCRUD = async (req, res) => {
+    let data = req.body
+    let allUser = await CRUDService.updateUserData(data)
+
+    //Trả lại trang read-crud.ejs sau khi update xong
+    return res.render("read-crud.ejs", {
+        dataTable: allUser
+    })
+    // return res.send('Update done !')
+
+}
+
 
 module.exports = {
     getHomePage: getHomePage,
@@ -52,4 +77,6 @@ module.exports = {
     getCRUD: getCRUD,
     postCRUD: postCRUD,
     readCRUD: readCRUD,
+    editCRUD: editCRUD,
+    putCRUD: putCRUD,
 }
