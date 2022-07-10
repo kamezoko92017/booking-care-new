@@ -70,3 +70,12 @@ Còn với ORM, chúng ta sẽ viết là: User.create() . Nó đơn giản và 
 
 - Sử dụng thư viện bcryptjs để hash password
 
+..........Video #37 CRUD với ReactJS Phần 1 - Viết API Lấy Tất Cả Thông Tin Người Dùng.....
+
+Để bắt đầu viết một CRUD (chức năng thêm, sửa, xóa), công việc đầu tiên chúng cần phải làm là chuẩn bị data để hiển thị phía React (Frontend),và cụ thể ở đây là danh sách người dùng trong hệ thống. 
+Vì vậy, trong video này, chúng ta sẽ cùng nhau viết api phía server Node.js để chuẩn bị cho phía client React.
+👉 Đây là video 01 trong serires học nhanh CRUD với ReactJS 
+
+....#38 CRUD với React 2 - Hiển Thị Dữ Liệu Người Dùng Ra View (READ)........
+
+....#39 CRUD với React 3 | Viết API Thêm, Sửa, Xóa Người Dùng ..........
