@@ -56,15 +56,14 @@ let handleCreateNewUser = async (req, res) => {
 
 let handleDeleteUser = async (req, res) => {
 
-    let i = req.query.id
-    let k = 1
-    if (!req.query.id) {
+    let i = req.body.id
+    if (!req.body.id) {
         return res.status(200).json({
             errCode: 1,
             errMessage: "Missing required parameter !"
         })
     }
-    let message = await userService.deleteUser(req.query.id)
+    let message = await userService.deleteUser(req.body.id)
     return res.status(200).json(message)
 }
 
@@ -74,10 +73,24 @@ let handleEditUser = async (req, res) => {
     return res.status(200).json(message)
 }
 
+let getAllCode = async (req, res) => {
+    try {
+        let data = await userService.getAllCodeService(req.query.type)
+        return res.status(200).json(data)
+    } catch (e) {
+        console.log('Get all code error: ', e)
+        return res.status(200).json({
+            errCode: -1,
+            errMessage: 'Error from server'
+        })
+    }
+}
+
 module.exports = {
     handleLogin: handleLogin,
     handleGetAllUsers: handleGetAllUsers,
     handleCreateNewUser: handleCreateNewUser,
     handleEditUser: handleEditUser,
     handleDeleteUser: handleDeleteUser,
+    getAllCode: getAllCode,
 }
