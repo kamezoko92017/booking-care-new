@@ -31,7 +31,7 @@ let handleUserLogin = (email, password) => {
 
                 let user = await db.users.findOne({
                     where: { email: email },
-                    attributes: ['email', 'roleId', 'password'],
+                    attributes: ['email', 'roleId', 'password', 'firstName', 'lastName'],
 
                     //chon raw de su dung duoc ham: delete user.password;
                     raw: true
